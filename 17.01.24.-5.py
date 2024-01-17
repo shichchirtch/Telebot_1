@@ -3,3 +3,5 @@ def mult(a,b):
 
 
 print(mult(4,5))
+
+print('text')
