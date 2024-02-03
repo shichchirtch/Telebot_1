@@ -20,7 +20,7 @@ offset = -2
 counter = 0
 ID_CHAT = 6831521683 # Ольгин id = 818273096
 # u = requests.get(f'{API_URL}{BOT_TOKEN}/getMe').json()
-# print(u)
+
 # updates = requests.get(f'{API_URL}{BOT_TOKEN}/getUpdates?offset={offset + 1}').json()
 id_list = []
 update_list=[]
