@@ -18,3 +18,4 @@ else:
     print(response.status_code)    # При другом коде ответа выводим этот код
 
 print("test commit")
+print("try to push in GITHab")
