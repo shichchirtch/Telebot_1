@@ -1,9 +1,8 @@
 import requests
 import time
-from random import choice
 from bots_token import BOT_TOKEN
 
-timeout = 1
+timeout = 50
 API_URL = 'https://api.telegram.org/bot'
 API_CATS_URL = 'https://api.thecatapi.com/v1/images/search'
 DOGS_URL ='https://random.dog/woof.json'
@@ -14,8 +13,9 @@ ERROR_TEXT = 'Здесь должна была быть картинка :('
 
 animal_dict={"cat":API_CATS_URL, "dog":DOGS_URL, "fox":FOX_URL, "bar":CAPYBARA_API_URL, 'da':'da', "net":"net"}
 Key_ERROR_TEXT = "Не знаю такого животного)))) попробуй ещё раз ! Только cat/dog/fox и bar "
-TEXT  = "Вас приветствует Чаппи!"
-TEXT2 = "Если хочешь, я могу показать тебе фотогрфафии котиков, пёсикорв, лисичек и капибар !"
+TEXT  = "\nС тобой общается Чаппи!"
+TEXT2 = ("Если хочешь, я могу показать тебе фотогрфафии котиков, пёсикорв, лисичек и капибар !\n"
+         "Введи cat/dog/fox или bar !")
 offset = -2
 counter = 0
 ID_CHAT = 6831521683 # Ольгин id = 818273096
@@ -39,7 +39,8 @@ while counter < 100:
         chat_id = updates['result'][0]['message']['from']['id']
 
         if chat_id not in id_list and len(update_list)==0:
-            requests.get(f'{API_URL}{BOT_TOKEN}/sendMessage?chat_id={chat_id}&text={TEXT}')
+            user_name = updates["result"][0]["message"]['from']['first_name']
+            requests.get(f'{API_URL}{BOT_TOKEN}/sendMessage?chat_id={chat_id}&text=Привет, {user_name} ! {TEXT}')
             id_list.append(chat_id)
             print(id_list)
             requests.get(f'{API_URL}{BOT_TOKEN}/sendMessage?chat_id={chat_id}&text={TEXT2}')
